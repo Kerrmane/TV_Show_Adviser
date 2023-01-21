@@ -3,9 +3,9 @@
     font-weight: 400;
 
 }
-.rating{
+/* .rating{
 
-}
+} */
 .overview:hover{
     overflow-y: auto;
 }
@@ -16,4 +16,11 @@
     margin: top 10px;;
     overflow-y: hidden;
 
+}
+.rating_container{
+    display: flex;
+}
+.rating{
+    margin-top: 3px;
+    margin-left: 5px;
 }
