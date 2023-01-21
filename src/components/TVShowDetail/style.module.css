@@ -1,0 +1,19 @@
+.title {
+    font-size: 35px;
+    font-weight: 400;
+
+}
+.rating{
+
+}
+.overview:hover{
+    overflow-y: auto;
+}
+.overview{
+    font-size: 20px;
+    font-weight: 400;
+    height: 120px;
+    margin: top 10px;;
+    overflow-y: hidden;
+
+}
