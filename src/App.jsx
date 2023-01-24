@@ -4,6 +4,8 @@ import { TVShowApi } from "./api/tv-show"
 import { useEffect, useState } from "react"
 import {BACKDROP_BASE_URL} from "./config"
 import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail"
+import {Logo} from "./components/logo/Logo"
+import logo from "./assets/img/logo.png"
 
 export  function App(){
     const [currentTVShow , setCurrentTVShow]= useState();
@@ -37,8 +39,7 @@ export  function App(){
             <div className={s.header}>
                 <div className="row">
                     <div className="col-4">
-                        <div>logo</div>
-                        <div>sub title</div>
+                        <Logo image={logo} title="WatWatch" subTitle="find a show you may like"/>
                     </div>
                 
                 
