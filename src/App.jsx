@@ -7,6 +7,7 @@ import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail"
 import {Logo} from "./components/logo/Logo"
 import logo from "./assets/img/logo.png"
 import { TVShowListItem } from "./components/TVShowListItem/TVShowListItem"
+import { TVShowList } from "./components/TVShowList/TVShowList"
 
 export  function App(){
 
@@ -25,7 +26,7 @@ export  function App(){
     async function fetchRecommendations(tvShowId){
         const recommendationsList = await TVShowApi.fetchRecommendations(tvShowId);
         if (recommendationsList.length > 0){
-            setRecommendationList(recommendationsList.slice(0, 10));
+            setRecommendationList(recommendationsList.slice(0,10));
         }
 
     }
@@ -73,11 +74,9 @@ export  function App(){
             <div className={s.tv_show_detail}>
                 {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
             </div>
-            <div className={s.recommendations}>{currentTVShow &&<><TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
-            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
-            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
-            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
-            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} /></>}</div>
+            <div className={s.recommendations}>
+                {recommendationsList && recommendationsList.length>0 && ( <TVShowList tvShowList={recommendationsList}/>)}
+                </div>
         </div>
     )
 }

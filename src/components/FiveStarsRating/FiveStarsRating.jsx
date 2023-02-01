@@ -5,11 +5,10 @@ export function FiveStarsRating({rating}){
     const starList =[];
 
     
-    // console.log(typeof(rating));
+    
     const starFillCount = Math.floor(rating);
     
-     console.log((rating));
-     console.log((starFillCount));
+     
 
     const hasStarHalf =rating - starFillCount>= 0.5 ;
 
@@ -25,7 +24,7 @@ export function FiveStarsRating({rating}){
     for (let i=1 ; i<=emptyStarCount ;i++){
         starList.push(<StarEmpty key={"emptyStarCount"+i}/>);
     }
-    console.log((starList));
+    
     return (
         <div>{starList}</div>
 )
