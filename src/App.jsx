@@ -6,9 +6,13 @@ import {BACKDROP_BASE_URL} from "./config"
 import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail"
 import {Logo} from "./components/logo/Logo"
 import logo from "./assets/img/logo.png"
+import { TVShowListItem } from "./components/TVShowListItem/TVShowListItem"
 
 export  function App(){
+
+    
     const [currentTVShow , setCurrentTVShow]= useState();
+    const [recommendationsList , setRecommendationList]= useState([]);
 
     async function fetchPopulars(){
         const populars = await TVShowApi.fetchPopulars();
@@ -17,14 +21,32 @@ export  function App(){
         }
 
     }
+
+    async function fetchRecommendations(tvShowId){
+        const recommendationsList = await TVShowApi.fetchRecommendations(tvShowId);
+        if (recommendationsList.length > 0){
+            setRecommendationList(recommendationsList.slice(0, 10));
+        }
+
+    }
+
     useEffect ( ()=> {
         fetchPopulars();
-       
-        
-        
-
-
+     
     }, []);
+
+    useEffect ( ()=> {
+        if(currentTVShow){
+            fetchRecommendations(currentTVShow.id)
+        }
+     
+    }, [currentTVShow]);
+
+    function setCurrentTVShowfromRecommendation(tvShow){
+        alert(JSON.stringify(tvShow))
+
+    }
+    console.log('***' ,recommendationsList)
     
     
 
@@ -51,7 +73,11 @@ export  function App(){
             <div className={s.tv_show_detail}>
                 {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
             </div>
-            <div className={s.recommendations}>recommendations</div>
+            <div className={s.recommendations}>{currentTVShow &&<><TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
+            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
+            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
+            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} />
+            <TVShowListItem onClick={setCurrentTVShowfromRecommendation} tvShow={currentTVShow} /></>}</div>
         </div>
     )
 }
