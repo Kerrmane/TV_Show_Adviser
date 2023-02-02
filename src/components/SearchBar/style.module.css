@@ -1,0 +1,23 @@
+.icon{
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 15px;
+
+}
+.input{
+    height: 30px;
+    width:100%;
+    background-color: #d9d9d96e;
+    padding: 18px 18px 18px 50px;
+    border-radius: 30px;
+    font-weight: 100;
+    font-size: 20px;
+    border-color: transparent;
+    color: white
+
+}.input::placeholder{
+    color :rgb(194, 194, 194)
+}
+.input:focus {
+    outline-width: 0px;
+}

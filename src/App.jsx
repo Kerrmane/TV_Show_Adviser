@@ -8,6 +8,7 @@ import {Logo} from "./components/logo/Logo"
 import logo from "./assets/img/logo.png"
 import { TVShowListItem } from "./components/TVShowListItem/TVShowListItem"
 import { TVShowList } from "./components/TVShowList/TVShowList"
+import { SearchBar } from "./components/SearchBar/SearchBar"
 
 export  function App(){
 
@@ -22,6 +23,7 @@ export  function App(){
         }
 
     }
+   
 
     async function fetchRecommendations(tvShowId){
         const recommendationsList = await TVShowApi.fetchRecommendations(tvShowId);
@@ -47,7 +49,16 @@ export  function App(){
         alert(JSON.stringify(tvShow))
 
     }
-    console.log('***' ,recommendationsList)
+     async function searchTVShow(TVShowName){
+        const searchResponse = await TVShowApi.fetchByTitle(TVShowName);
+        
+        if (searchResponse.length > 0){
+            
+
+            setCurrentTVShow(searchResponse[0]);
+        }
+
+    }
     
     
 
@@ -67,16 +78,18 @@ export  function App(){
                 
                 
                     <div className="col-sm-12 col-md-4">
-                        <input style={{width:"100%"}} type="text" />
+                        <SearchBar onSubmit={searchTVShow}/>
                     </div>
                 </div>
             </div>
             <div className={s.tv_show_detail}>
                 {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
             </div>
-            <div className={s.recommendations}>
-                {recommendationsList && recommendationsList.length>0 && ( <TVShowList tvShowList={recommendationsList}/>)}
-                </div>
+            <div className={s.recommended_shows}>
+        {recommendationsList && recommendationsList.length > 0 && (
+          <TVShowList onClickItem={setCurrentTVShow} tvShowList={recommendationsList}  />
+        )}
+      </div>
         </div>
     )
 }
